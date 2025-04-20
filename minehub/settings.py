@@ -3,6 +3,7 @@ import os
 from decouple import config
 import os
 from dotenv import load_dotenv
+from decouple import config
 
 load_dotenv()  # ensure your environment variables are loaded
 
@@ -14,7 +15,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 MEDIA_ROOT = BASE_DIR / 'media'
 
-DEBUG = True
+
 
 APPEND_SLASH = False
 
@@ -49,7 +50,9 @@ INSTALLED_APPS = [
 
 ROOT_URLCONF = 'minehub.urls'
 
-SECRET_KEY = 'g$6@lfr=01r=y3f2cz9gke7v6+i-9&c-4t=)$@kq0t5e44p&72'
+
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 TEMPLATES = [
     {
