@@ -8,7 +8,6 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 
-stripe.api_key = settings.STRIPE_SECRET_KEY
 
 @csrf_exempt
 def create_checkout_session(request):

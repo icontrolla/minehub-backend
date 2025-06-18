@@ -1,14 +1,10 @@
 from pathlib import Path
 import os
-from decouple import config
+
 import os
-from dotenv import load_dotenv
-from decouple import config
 
-load_dotenv()  # ensure your environment variables are loaded
 
-STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
-
+SECRET_KEY = '!&#b(^zox!(x3u)&#n-12n9anthv#@vt&9t6mu+33+!*gtwuca'
 
 MEDIA_URL = '/media/'
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -51,8 +47,7 @@ INSTALLED_APPS = [
 ROOT_URLCONF = 'minehub.urls'
 
 
-SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = True
 
 TEMPLATES = [
     {
@@ -88,7 +83,7 @@ DATABASES = {
 }
 
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # CORS headers
