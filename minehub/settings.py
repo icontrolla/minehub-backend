@@ -12,7 +12,7 @@ DEBUG = False
 
 # Hosts allowed
 ALLOWED_HOSTS = [
-    'https://minehub-backend-uvob.onrender.com'
+    'https://minehub-backend-uvob.onrender.com',
     'minehub-frontend.onrender.com',
     'localhost',
     '127.0.0.1',
@@ -116,6 +116,11 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 CORS_ALLOWED_ORIGINS = [
     "https://minehub-frontend.onrender.com",
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://minehub-frontend.onrender.com",
+]
+
 # DRF config (optional for cleaner API output)
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
