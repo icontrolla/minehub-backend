@@ -2,6 +2,15 @@ from rest_framework import serializers
 from .models import Equipment, DrillingMachine, Excavator, Loader, TransportTruck
 from .models import Cart, CartItem
 from django.contrib.contenttypes.models import ContentType
+from urllib.parse import quote  # for safe URL encoding
+
+
+# Helper to construct Backblaze B2 URL
+def get_b2_image_url(filename):
+    if filename:
+        return f"https://f005.backblazeb2.com/file/minehub/{quote(filename)}"
+    return "https://via.placeholder.com/400x200?text=No+Image"
+
 
 class CartItemSerializer(serializers.ModelSerializer):
     machine_name = serializers.SerializerMethodField()
@@ -26,10 +35,12 @@ class CartSerializer(serializers.ModelSerializer):
         model = Cart
         fields = ['id', 'user', 'created_at', 'items']
 
+
 class EquipmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Equipment
         fields = '__all__'
+
 
 class DrillingMachineSerializer(serializers.ModelSerializer):
     image = serializers.SerializerMethodField()
@@ -39,10 +50,8 @@ class DrillingMachineSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'description', 'price', 'image', 'availability', 'created_at']
 
     def get_image(self, obj):
-        request = self.context.get('request')
-        if obj.image and hasattr(obj.image, 'url'):
-            return request.build_absolute_uri(obj.image.url)
-        return None
+        return get_b2_image_url(obj.image)
+
 
 class ExcavatorSerializer(serializers.ModelSerializer):
     image = serializers.SerializerMethodField()
@@ -52,10 +61,7 @@ class ExcavatorSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'description', 'price', 'image', 'availability', 'created_at']
 
     def get_image(self, obj):
-        request = self.context.get('request')
-        if obj.image and hasattr(obj.image, 'url'):
-            return request.build_absolute_uri(obj.image.url)
-        return None
+        return get_b2_image_url(obj.image)
 
 
 class LoaderSerializer(serializers.ModelSerializer):
@@ -66,10 +72,7 @@ class LoaderSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'description', 'price', 'image', 'availability', 'created_at']
 
     def get_image(self, obj):
-        request = self.context.get('request')
-        if obj.image and hasattr(obj.image, 'url'):
-            return request.build_absolute_uri(obj.image.url)
-        return None
+        return get_b2_image_url(obj.image)
 
 
 class TransportTruckSerializer(serializers.ModelSerializer):
@@ -80,9 +83,4 @@ class TransportTruckSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'description', 'price', 'image', 'availability', 'created_at']
 
     def get_image(self, obj):
-        request = self.context.get('request')
-        if obj.image and hasattr(obj.image, 'url'):
-            return request.build_absolute_uri(obj.image.url)
-        return None
-
-
+        return get_b2_image_url(obj.image)
