@@ -112,9 +112,10 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # If using Whitenoise for static files
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# CORS config
-CORS_ALLOW_ALL_ORIGINS = True  # You can restrict later
 
+CORS_ALLOWED_ORIGINS = [
+    "https://minehub-frontend.onrender.com",
+]
 # DRF config (optional for cleaner API output)
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
