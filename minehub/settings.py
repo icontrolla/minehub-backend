@@ -12,7 +12,7 @@ DEBUG = False
 
 # Hosts allowed
 ALLOWED_HOSTS = [
-    'https://minehub-backend-uvob.onrender.com',
+    'minehub-backend-uvob.onrender.com',
     'minehub-frontend.onrender.com',
     'localhost',
     '127.0.0.1',
