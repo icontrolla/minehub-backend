@@ -15,16 +15,9 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 APPEND_SLASH = False
 
-# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-
-# If you plan to collect static files for production later:
-STATICFILES_DIRS = [
-    #BASE_DIR / "static",
-]
-
-# For production use this (after `collectstatic`)
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# Static files (CSS, JavaScript, Images)
 
 
 INSTALLED_APPS = [
