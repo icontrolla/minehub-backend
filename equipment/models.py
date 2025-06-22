@@ -13,7 +13,7 @@ class Equipment(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     category = models.ForeignKey(EquipmentCategory, on_delete=models.SET_NULL, null=True)
-    image = models.CharField(max_length=255, blank=True, null=True)  # Store filename only
+    image = models.ImageField(upload_to='equipment/', blank=True, null=True)
     price_per_day = models.DecimalField(max_digits=10, decimal_places=2)
     available = models.BooleanField(default=True)
     date_added = models.DateTimeField(auto_now_add=True)
@@ -26,7 +26,7 @@ class DrillingMachine(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    image = models.CharField(max_length=255, blank=True, null=True)  # Store filename only
+    image = models.ImageField(upload_to='drilling-machines/', blank=True, null=True)
     availability = models.BooleanField(default=True)  # To track if it's available
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -38,7 +38,7 @@ class Excavator(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    image = models.CharField(max_length=255, blank=True, null=True)  # Store filename only
+    image = models.ImageField(upload_to='excavators/', blank=True, null=True)
     availability = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -50,7 +50,7 @@ class Loader(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    image = models.CharField(max_length=255, blank=True, null=True)  # Store filename only
+    image = models.ImageField(upload_to='loaders/', blank=True, null=True)
     availability = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -62,7 +62,7 @@ class TransportTruck(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    image = models.CharField(max_length=255, blank=True, null=True)  # Store filename only
+    image = models.ImageField(upload_to='transport_trucks/', blank=True, null=True)
     availability = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
