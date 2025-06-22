@@ -5,12 +5,11 @@ from django.contrib.contenttypes.models import ContentType
 from urllib.parse import quote  # for safe URL encoding
 
 
-# Helper to construct Backblaze B2 URL
-def get_b2_image_url(filename):
-    if filename:
-        return f"https://f005.backblazeb2.com/file/minehub/{quote(filename)}"
-    return "https://via.placeholder.com/400x200?text=No+Image"
-
+def get_b2_image_url(image_field):
+    if not image_field:
+        return None
+    filename = str(image_field.name)
+    return f"https://f005.backblazeb2.com/file/minehub/{quote(filename)}"
 
 class CartItemSerializer(serializers.ModelSerializer):
     machine_name = serializers.SerializerMethodField()
